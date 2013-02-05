@@ -1,0 +1,15 @@
+<%= form_for @cat do |f| %>
+  <%= f.label :name, "name:" %>
+  <%= f.text_field :name %>
+  <br>
+  <%= f.label :breed, "breed:" %>
+  <%= f.text_field :breed %>
+  <br>
+  <%= f.label :age, "age:" %>
+  <%= f.text_field :age %>
+  <br>
+  <%= f.label :picture, "CAT PHOTO:" %>
+  <%= f.file_field :picture %>
+  <br>
+  <%= f.submit "meow" %>
+<% end %>
