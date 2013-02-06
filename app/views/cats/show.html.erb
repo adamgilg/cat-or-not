@@ -1,32 +1,35 @@
-<div>
-  <%= image_tag photo_cat_path(@cat) %>
-  <h2>Bio</h2>
-    <p>Hello! My name is <%= @cat.name %>. I'm a <%= @cat.breed %> and I'm <%= @cat.age %>-years-old.</p>
-    <p>Am I totally a cat? Average rating: <%= @cat.average_rating %>
-      | Total ratings: <%= @cat.total_ratings %></p>
-
-  <% unless session["comment_#{@cat.id}"] == "commented" %>
-    <h3>Your thoughts:</h3>
-      <%= simple_form_for @comment, :url => comments_path do |f| %>
-      <%= f.error_notification %>
-
-        <div class="form-input">
-          <%= f.hidden_field :cat_id, value: @cat.id %>
-          <%= f.input :name %>
-          <%= f.input :text, :as => :text, input_html: { rows: 5 } %>
-          <br>
-          <%= f.button :submit, "meow", :class => "btn btn-primary" %>
-       </div>
-     <% end %>
-
-  <% end %>
-
-  <h3>Here's what other people think</h3>
-  <% @cat.comments.each do |comment| %>
-    <div>
-      <p><strong><%= comment.name %>:</strong></p>
-      <p><%= comment.text %></p>
-      <p><%= time_ago_in_words(comment.created_at) %> ago</p>
+<div class="row">
+  <div class="span6">
+    <div class="cat-bio">
+      <%= image_tag photo_cat_path(@cat) %>
+      <p>Hello! My name is <%= @cat.name %>. I'm a <%= @cat.breed %> and I'm <%= @cat.age %>-years-old.</p>
+      <p>Am I totally a cat? Average rating: <%= @cat.average_rating %>
+        | Total ratings: <%= @cat.total_ratings %></p>
     </div>
-  <% end %>
+  </div>
+  <div class="span6">
+    <% unless session["comment_#{@cat.id}"] == "commented" %>
+      <h3>Your thoughts:</h3>
+        <%= simple_form_for @comment, :url => comments_path do |f| %>
+        <%= f.error_notification %>
+
+          <div class="form-input">
+            <%= f.hidden_field :cat_id, value: @cat.id %>
+            <%= f.input :name %>
+            <%= f.input :text, :as => :text, input_html: { rows: 5 } %>
+            <br>
+            <%= f.button :submit, "meow", :class => "btn btn-primary" %>
+         </div>
+       <% end %>
+
+    <% end %>
+
+    <h3>Here's what other people think</h3>
+    <% @cat.comments.each do |comment| %>
+      <div class="well cat-comment">
+        <p><strong><%= comment.name %>:</strong> <%= comment.text %></p>
+        <div class="timestamp"><%= time_ago_in_words(comment.created_at) %> ago</div>
+      </div>
+    <% end %>
+  </div>
 </div>

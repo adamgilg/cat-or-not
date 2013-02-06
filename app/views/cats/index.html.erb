@@ -1,24 +1,29 @@
-<div class="cat-details">
+<div class="index-container">
   <% @cats.each do |cat| %>
-    <%= image_tag photo_cat_path(cat), :class => "cat-photo" %>
-    <br>
-    <h3><%= link_to cat.name, cat_path(cat) %></h3>
-    <p>age: <%= cat.age %> | breed: <%= cat.breed %></p>
-    <p>Average rating: <%= cat.average_rating %>, Times rated: <%= cat.total_ratings %></p>
-
-    <% unless session["cat_#{cat.id}"] == "rated" %>
-      <%= simple_form_for @rating, :url => rating_cat_path(cat), :id => "cat-#{cat.id}" do |f| %>
-      <%= f.error_notification %>
-
-        <div class="form-inputs">
-          <%= f.input :rating,
-                      :as => :radio_buttons,
-                      :item_wrapper_class => 'inline',
-                      :collection => 1..7 %>
-          <%= f.submit "meow", :class => "btn btn-primary" %>
+    <div class="row">
+      <div class="span5">
+        <%= image_tag photo_cat_path(cat) %>
+      </div>
+      <div class="span5">
+        <div class="cat-bio cat-index">
+          <h3><%= link_to cat.name, cat_path(cat) %></h3>
+          <p>age: <%= cat.age %> | breed: <%= cat.breed %></p>
+          <p>Average rating: <%= cat.average_rating %>, Times rated: <%= cat.total_ratings %></p>
         </div>
+        <% unless session["cat_#{cat.id}"] == "rated" %>
+          <%= simple_form_for @rating, :url => rating_cat_path(cat), :id => "cat-#{cat.id}" do |f| %>
+          <%= f.error_notification %>
 
-      <% end %>
-    <% end %>
+            <div class="form-inputs">
+              <%= f.input :rating,
+                          :as => :radio_buttons,
+                          :item_wrapper_class => 'inline',
+                          :collection => 1..7 %>
+              <%= f.submit "meow", :class => "btn btn-primary" %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
   <% end %>
 </div>
