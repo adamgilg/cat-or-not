@@ -2,7 +2,7 @@
   <% @cats.each do |cat| %>
     <%= image_tag photo_cat_path(cat) %>
     <br>
-    <p><%= cat.name %> | <%= cat.age %> | <%= cat.breed %></p>
+    <p>name: <%= cat.name %> | age: <%= cat.age %> | breed: <%= cat.breed %></p>
     <p>Average rating: <%= Rating.average_rating(cat) %>, Times rated: <%= Rating.total_ratings(cat) %></p>
     <%= form_for @rating, :url => rating_cat_path(cat), :id => "cat-#{cat.id}" do |f| %>
       <% (1..7).each do |num| %>
