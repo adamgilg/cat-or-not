@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Cats</title>
+  <title>Cat Or Not</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
   <% unless current_page?(new_cat_path) %>
-    <%= button_to "New Cat!", new_cat_path, :method => "get" %>
+    <%= button_to "New Cat!", new_cat_path, :method => "get", :id => "new-cat-btn", :class => "btn btn-primary" %>
   <% end %>
+  <h1><%= link_to "CatOrNot.com", root_path %></h1>
 <%= yield %>
 
 </body>

@@ -8,7 +8,7 @@ class CatsController < ApplicationController
     @cat = Cat.new(params[:cat])
     @cat.picture = picture.read
     @cat.save!
-    redirect_to cats_path
+    redirect_to root_path
   end
 
   def index
@@ -16,11 +16,16 @@ class CatsController < ApplicationController
     @rating = Rating.new
   end
 
+  def show
+    @cat = Cat.find(params[:id])
+    @comment = Comment.new
+  end
+
   def rating
     @cat = Cat.find(params[:id])
     @rating = @cat.ratings.create(params[:rating])
-    session[@cat.id] = "rated"
-    redirect_to cats_path
+    session["cat_#{@cat.id}"] = "rated"
+    redirect_to root_path
   end
 
   def photo

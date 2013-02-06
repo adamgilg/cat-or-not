@@ -1,15 +1,11 @@
-<%= form_for @cat do |f| %>
-  <%= f.label :name, "name:" %>
-  <%= f.text_field :name %>
-  <br>
-  <%= f.label :breed, "breed:" %>
-  <%= f.text_field :breed %>
-  <br>
-  <%= f.label :age, "age:" %>
-  <%= f.text_field :age %>
-  <br>
-  <%= f.label :picture, "CAT PHOTO:" %>
-  <%= f.file_field :picture %>
-  <br>
-  <%= f.submit "meow" %>
+<%= simple_form_for @cat do |f| %>
+<%= f.error_notification %>
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :breed %>
+    <%= f.input :age %>
+    <%= f.file_field :picture %>
+
+    <%= f.button :submit, "meow", :class => 'btn btn-primary' %>
+  </div>
 <% end %>

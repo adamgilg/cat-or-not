@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130205173329) do
+ActiveRecord::Schema.define(:version => 20130206182928) do
 
   create_table "cats", :force => true do |t|
     t.binary   "picture"
@@ -20,6 +20,14 @@ ActiveRecord::Schema.define(:version => 20130205173329) do
     t.integer  "age"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "comments", :force => true do |t|
+    t.integer  "cat_id"
+    t.string   "text"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "name"
   end
 
   create_table "ratings", :force => true do |t|
