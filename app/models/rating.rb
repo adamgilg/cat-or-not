@@ -7,11 +7,4 @@ class Rating < ActiveRecord::Base
   validates :rating, presence: true
   validates :rating, inclusion: 1..7
 
-  def self.average_rating(cat)
-    Rating.where(:cat_id => cat.id).average(:rating).to_i
-  end
-
-  def self.total_ratings(cat)
-    Rating.where(:cat_id => cat.id).count(:rating)
-  end
 end

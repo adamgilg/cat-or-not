@@ -19,6 +19,7 @@ class CatsController < ApplicationController
   def rating
     @cat = Cat.find(params[:id])
     @rating = @cat.ratings.create(params[:rating])
+    session[@cat.id] = "rated"
     redirect_to cats_path
   end
 

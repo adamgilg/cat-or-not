@@ -7,8 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <%= button_to "New Cat!", new_cat_path, :method => "get" %>
-
+  <% unless current_page?(new_cat_path) %>
+    <%= button_to "New Cat!", new_cat_path, :method => "get" %>
+  <% end %>
 <%= yield %>
 
 </body>

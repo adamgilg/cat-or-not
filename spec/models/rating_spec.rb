@@ -8,30 +8,11 @@ describe Rating do
   describe "#valid_rating" do
     it "does not allow ratings outside the valid range" do
       cat_rating.rating = 11
-      cat_rating.valid?.should be_false
+      cat_rating.should_not be_valid
     end
 
-    it "returns true with a rating between 1 and 10" do
-      cat_rating.valid?.should be_true
-    end
-  end
-
-  context "with multiple ratings" do
-    before(:each) do
-      Rating.create(cat_id: 1, rating: 3)
-      Rating.create(cat_id: 1, rating: 4)
-    end
-
-    describe "#average_rating" do
-
-      it "should return the average rating for a cat" do
-        Rating.average_rating(cat).should == 4
-      end
-
-      it "should return the total number of ratings for a cat" do
-        Rating.total_ratings(cat).should == 3
-      end
-
+    it "returns true with a rating within the valid range" do
+      cat_rating.should be_valid
     end
   end
 end

@@ -27,7 +27,7 @@ describe CatsController do
 
   describe "#rating" do
     before do
-      Cat.create(picture: file.read)
+      FactoryGirl.create(:cat)
     end
 
     let(:rating_params) do
