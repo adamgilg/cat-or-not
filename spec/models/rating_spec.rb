@@ -18,14 +18,14 @@ describe Rating do
 
   context "with multiple ratings" do
     before(:each) do
-      Rating.create(cat_id: 1, rating: 7)
-      Rating.create(cat_id: 1, rating: 9)
+      Rating.create(cat_id: 1, rating: 3)
+      Rating.create(cat_id: 1, rating: 4)
     end
 
     describe "#average_rating" do
 
       it "should return the average rating for a cat" do
-        Rating.average_rating(cat).should == 7
+        Rating.average_rating(cat).should == 4
       end
 
       it "should return the total number of ratings for a cat" do

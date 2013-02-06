@@ -20,5 +20,20 @@ describe "cat creation" do
     new_cat
     current_path.should == cats_path
   end
+end
 
+describe "cat rating" do
+  before do
+    FactoryGirl.create(:cat)
+  end
+
+  def rate_cat
+    visit cats_path
+    choose("rating_rating_5")
+    click_button 'meow'
+  end
+
+  it "rates a cat" do
+    expect { rate_cat }.to change(Rating, :count)
+  end
 end

@@ -12,12 +12,18 @@ class CatsController < ApplicationController
   end
 
   def index
-    render :json => "nothing"
+    @cats = Cat.ordered_by_rating
+    @rating = Rating.new
   end
 
   def rating
     @cat = Cat.find(params[:id])
     @rating = @cat.ratings.create(params[:rating])
     redirect_to cats_path
+  end
+
+  def photo
+    cat = Cat.find(params[:id])
+    send_data(cat.picture, type: 'image/jpg', disposition: 'inline')
   end
 end
