@@ -1,10 +1,10 @@
+<%= button_to "Edit Cat!", edit_cat_path(@cat), :method => :get, :class => "btn btn-inverse modify-cat" %>
 <div class="row">
   <div class="span6">
     <div class="cat-bio">
       <%= image_tag photo_cat_path(@cat) %>
       <p>Hello! My name is <%= @cat.name %>. I'm a <%= @cat.breed %> and I'm <%= @cat.age %>-years-old.</p>
-      <p>Am I totally a cat? Average rating: <%= @cat.average_rating %>
-        | Total ratings: <%= @cat.total_ratings %></p>
+      <p><%= pluralize(@cat.total_ratings, 'person') %> voted this fine specimen as <%= pluralize(@cat.average_rating, 'seventh') %> cat</p>
     </div>
   </div>
   <div class="span6">
@@ -26,10 +26,7 @@
 
     <h3>Here's what other people think</h3>
     <% @cat.comments.each do |comment| %>
-      <div class="well cat-comment">
-        <p><strong><%= comment.name %>:</strong> <%= comment.text %></p>
-        <div class="timestamp"><%= time_ago_in_words(comment.created_at) %> ago</div>
-      </div>
+      <%= render comment %>
     <% end %>
   </div>
 </div>

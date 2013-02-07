@@ -54,6 +54,22 @@ form {
   }
 }
 
+.comment-edit {
+  max-width: 300px;
+}
+
+.delete-comment {
+  position: relative;
+  bottom: 50px;
+  left: 155px;
+}
+
+.modify-cat {
+  position: absolute;
+  top: 20px;
+  right: 120px;
+}
+
 .timestamp {
   position: relative;
   top: -5px;

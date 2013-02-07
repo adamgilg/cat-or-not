@@ -1,0 +1,25 @@
+<%= button_to "Delete Cat!", cat_path(@cat), method: :delete, :confirm => "Are you sure?", :class => "btn btn-danger modify-cat" %>
+<div class="row">
+  <div class="span6">
+    <div class="cat-bio">
+      <%= image_tag photo_cat_path(@cat) %>
+      <%= simple_form_for @cat, url: cat_path(@cat) do |f| %>
+      <%= f.error_notification %>
+        <div class="form-inputs">
+          <%= render :partial => "form", :locals => { :f => f } %>
+          <%= f.hidden_field :id, :value => @cat.id %>
+          <%= f.button :submit, "meow", :class => 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="span6">
+    <h3>Comment moderation</h3>
+    <% @cat.comments.each do |comment| %>
+      <div class="comment-edit">
+        <%= render comment %>
+      </div>
+      <%= button_to "Delete comment", comment_path(comment), method: :delete, :class => "btn btn-danger delete-comment" %>
+    <% end %>
+  </div>
+</div>

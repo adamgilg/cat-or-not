@@ -1,11 +1,8 @@
 <%= simple_form_for @cat do |f| %>
 <%= f.error_notification %>
   <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :breed %>
-    <%= f.input :age %>
+    <%= render :partial => "form", :locals => { :f => f } %>
     <%= f.file_field :picture %>
-
     <%= f.button :submit, "meow", :class => 'btn btn-primary' %>
   </div>
 <% end %>

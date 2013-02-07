@@ -8,7 +8,7 @@
         <div class="cat-bio cat-index">
           <h3><%= link_to cat.name, cat_path(cat) %></h3>
           <p>age: <%= cat.age %> | breed: <%= cat.breed %></p>
-          <p>Average rating: <%= cat.average_rating %>, Times rated: <%= cat.total_ratings %></p>
+          <p><%= pluralize(cat.average_rating, 'seventh') %> cat out of <%= pluralize(cat.total_ratings, 'time') %> rated.</p>
         </div>
         <% unless session["cat_#{cat.id}"] == "rated" %>
           <%= simple_form_for @rating, :url => rating_cat_path(cat), :id => "cat-#{cat.id}" do |f| %>
@@ -16,6 +16,7 @@
 
             <div class="form-inputs">
               <%= f.input :rating,
+                          :label => "Amount Cat",
                           :as => :radio_buttons,
                           :item_wrapper_class => 'inline',
                           :collection => 1..7 %>

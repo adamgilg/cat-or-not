@@ -2,7 +2,7 @@ class Cat < ActiveRecord::Base
   attr_accessible :age, :breed, :name, :picture
 
   has_many :ratings
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   validates :picture, presence: true
 
@@ -17,6 +17,4 @@ class Cat < ActiveRecord::Base
   def total_ratings
     self.ratings.count
   end
-
-
 end

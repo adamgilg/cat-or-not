@@ -5,7 +5,7 @@ Cats::Application.routes.draw do
       get :photo
     end
   end
-  resources :comments, only: :create
+  resources :comments, only: [:create, :show, :destroy]
 
   root :to => "cats#index"
 end
