@@ -14,6 +14,14 @@
 @import 'bootstrap';
 
 body {
+  background-image: url("cats.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+body {
   width: 95%;
   margin: auto;
   font-family: 'Comic Sans MS';
